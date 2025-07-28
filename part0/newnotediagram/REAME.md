@@ -31,7 +31,7 @@ sequenceDiagram
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
     activate server
-    server-->>browser: Json data with new user
+    server-->>browser: Json data with new note
     deactivate server
 
     Note right of browser: Browser executes callback function that renders notes
