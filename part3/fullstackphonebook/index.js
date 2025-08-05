@@ -27,6 +27,7 @@ let persons = [
 ];
 
 app.use(cors());
+app.use(express.static("dist"));
 app.use(express.json());
 app.use(express.urlencoded());
 
@@ -37,10 +38,6 @@ morgan.token("body", (req) => {
 app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms :body")
 );
-
-app.get("/", (req, res) => {
-  res.send("API is up and running!");
-});
 
 app.get("/api/persons", (req, res) => {
   res.json(persons);
