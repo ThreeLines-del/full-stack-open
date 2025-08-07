@@ -1,11 +1,10 @@
 require("dotenv").config();
-const express = require(`express`);
+const express = require("express");
 const morgan = require("morgan");
 const Person = require("./models/person");
-const person = require("./models/person");
 const app = express();
 
-const errorHandler = (error, request, response, next) => {
+const errorHandler = (error, response) => {
   console.error(error.message);
 
   if (error.name === "CastError") {
@@ -60,7 +59,7 @@ app.delete("/api/persons/:id", (req, res, next) => {
       if (result) {
         Person.find({}).then((updatedList) => res.json(updatedList));
       } else {
-        res.status(204).end();
+        res.status(404).end();
       }
     })
     .catch((error) => next(error));
