@@ -3,11 +3,7 @@ const baseUrl = "/api/blogs";
 
 const getToken = () => {
   const user = JSON.parse(localStorage.getItem("loggedBlogAppUser"));
-  return `Bearer ${user?.token || null}`;
-};
-
-const config = {
-  headers: { Authorization: getToken() },
+  return user?.token ? `Bearer ${user.token}` : null;
 };
 
 const getAll = async () => {
@@ -16,7 +12,12 @@ const getAll = async () => {
 };
 
 const create = async (newObject) => {
+  const config = {
+    headers: { Authorization: getToken() },
+  };
+
   const response = await axios.post(baseUrl, newObject, config);
+  console.log("BLOG RESPONSE:", response.data);
   return response.data;
 };
 
@@ -27,6 +28,10 @@ const update = async (id, newObject) => {
 };
 
 const deleteOne = async (id) => {
+  const config = {
+    headers: { Authorization: getToken() },
+  };
+
   await axios.delete(`${baseUrl}/${id}`, config);
 };
 

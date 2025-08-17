@@ -25,26 +25,32 @@ const CreateBlogForm = ({ handleCreateBlog }) => {
       <form onSubmit={addBlog}>
         title{" "}
         <input
+          data-testid="title"
           name="title"
           value={blogDetails.title}
           onChange={handleSetBlogDetails}
           type="text"
+          placeholder="blog title"
         />
         <br />
         author{" "}
         <input
+          data-testid="author"
           name="author"
           value={blogDetails.author}
           onChange={handleSetBlogDetails}
           type="text"
+          placeholder="blog author"
         />
         <br />
         url{" "}
         <input
+          data-testid="url"
           name="url"
           value={blogDetails.url}
           onChange={handleSetBlogDetails}
           type="text"
+          placeholder="blog url"
         />
         <br />
         <button>create</button>
